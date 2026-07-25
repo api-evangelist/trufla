@@ -1,0 +1,247 @@
+aid: trufla
+name: Trufla
+review:
+  question: Does Trufla expose a public, self-serve developer portal or downloadable API definitions for its insurance broker platform?
+  answer: false
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: Canada
+  tier: agency-brokerage-tech
+  gated: true
+findings:
+  summary: |
+    Trufla Technology publishes no public developer portal and no self-serve
+    API. It is a Calgary, Alberta insurtech selling a digital-distribution
+    suite (truWeb, truMarket, truMobile, DataHub, Trudi, PolicyPro) to
+    independent P&C brokerages, mostly in Canada with some UK clients. Every
+    first-party developer host was probed on 2026-07-25 and none exists:
+    developer.trufla.com, developers.trufla.com, docs.trufla.com and
+    api.trufla.com all return NXDOMAIN at DNS. The marketing site's full
+    page-sitemap (https://www.trufla.com/page-sitemap.xml, HTTP 200, 79 URLs)
+    contains no /developers, /api, /developer or /integrations page at all;
+    the only adjacent surfaces are /resources/partners/ (HTTP 200, a
+    JavaScript-rendered partner logo grid with no partner names in the HTML
+    and no technical content) and /products/trumarket/app-store/ (HTTP 200, a
+    marketing description of subscribable connectors). Both are marketing
+    pages, not developer portals. Every OpenAPI/Swagger discovery path
+    returned 404 (see openapiHunt below). The only machine-readable endpoint
+    on the entire domain is /wp-json — the WordPress REST API of the
+    marketing CMS (HTTP 200, returns {"name":"Trufla Technology",...}). That
+    is incidental WordPress infrastructure, not a product API, and it is not
+    listed in apis.yml.
+
+    Integration with Trufla is inbound and partner-gated by design. The
+    truMarket app store describes broker management system connectors to
+    Acturis, Power Broker and Vertafore; the truMobile Clementine RPA page
+    names Applied Epic, TAM and Power Broker as the systems brokers rely on
+    and that "don't integrate easily with external platforms like Trufla's
+    truMobile and truMarket"; and further app-store connectors cover
+    Salesforce, SEH Systems, telephony, e-signature, payment processing and
+    the Communications Centre (formerly CP360). None of these is documented
+    as a callable Trufla API — they are apps a brokerage subscribes to inside
+    a licensed CRM.
+  developerPortal:
+    exists: false
+    url: ''
+    confirmed: false
+    classification: none — no developer surface of any kind; the nearest pages are marketing (partner logo grid, app-store product page)
+    probes:
+    - url: https://developer.trufla.com
+      dns: NXDOMAIN
+      httpStatus: 000
+    - url: https://developers.trufla.com
+      dns: NXDOMAIN
+      httpStatus: 000
+    - url: https://docs.trufla.com
+      dns: NXDOMAIN
+      httpStatus: 000
+    - url: https://api.trufla.com
+      dns: NXDOMAIN
+      httpStatus: 000
+    - url: https://portal.trufla.com
+      dns: NXDOMAIN
+      httpStatus: 000
+    - url: https://app.trufla.com
+      dns: NXDOMAIN
+      httpStatus: 000
+    - url: https://www.trufla.com/developers
+      httpStatus: 403
+      note: Cloudflare bot challenge to curl; no such path exists in page-sitemap.xml, so this is the site's catch-all, not a portal.
+    - url: https://www.trufla.com/api
+      httpStatus: 403
+      note: Cloudflare bot challenge to curl; not present in page-sitemap.xml.
+    - url: https://www.trufla.com/developer
+      httpStatus: 403
+      note: Cloudflare bot challenge to curl; not present in page-sitemap.xml.
+    - url: https://www.trufla.com/partners
+      httpStatus: 403
+      note: Real page lives at /resources/partners/ (HTTP 200) — marketing logo grid, no technical content.
+    - url: https://www.trufla.com/integrations
+      httpStatus: 403
+      note: Not present in page-sitemap.xml; the integrations content is /products/trumarket/app-store/ (HTTP 200), a marketing page.
+    - url: https://help.trufla.com
+      dns: resolves (Cloudflare)
+      httpStatus: 403
+      note: Cloudflare interstitial; a customer support/knowledge base host, not a developer portal.
+  openapiHunt:
+    harvested: false
+    specsCount: 0
+    note: No OpenAPI, Swagger, AsyncAPI, GraphQL SDL or .proto file was found. Nothing was saved, so no openapi/ directory exists in this repo.
+    probes:
+    - url: https://www.trufla.com/openapi.json
+      httpStatus: 404
+    - url: https://www.trufla.com/openapi.yaml
+      httpStatus: 404
+    - url: https://www.trufla.com/swagger.json
+      httpStatus: 404
+    - url: https://www.trufla.com/v1/openapi.json
+      httpStatus: 404
+    - url: https://www.trufla.com/api-docs
+      httpStatus: 404
+    - url: https://www.trufla.com/spec
+      httpStatus: 404
+    - url: https://www.trufla.com/redoc
+      httpStatus: 404
+    - url: https://www.trufla.com/api/v1
+      httpStatus: 404
+    - url: https://www.trufla.com/wp-json
+      httpStatus: 200
+      note: WordPress core REST API of the marketing CMS. Incidental infrastructure, not a Trufla product API; deliberately not listed in apis.yml.
+  acordPosture:
+    phrase: No ACORD reference found; Canadian CSIO standards implementation named in truMarket onboarding
+    acordMentioned: false
+    al3Mentioned: false
+    acordXmlMentioned: false
+    ivansMentioned: false
+    ngdsMentioned: false
+    csioMentioned: true
+    evidence:
+    - source: https://www.trufla.com/products/trumarket/
+      quote: 'CSIO Implementation: Ensuring standards compliance and efficient data exchange.'
+      note: Listed as a step in the truMarket implementation phase, alongside "Building or Mapping Forms" and "Bulk Upload Customers ... from your BMS to truMarket".
+    - source: https://www.trufla.com/legal/terms-of-service/
+      quote: required for interoperation and connectivity with truMobile or truMarket, including, but limited to, CISIO account and mailbox, Apple Accounts (for mobile apps), insurer contracts and APIs, third party plugins or applications
+      note: Trufla's service-specific terms place the standards account and the insurer API contracts on the brokerage client, not on Trufla. "CISIO" is Trufla's spelling of CSIO. The same clause appears in the truWeb terms.
+    interpretation: |
+      Canada's data-standards seam for the broker channel is CSIO (Centre for
+      Study of Insurance Operations), not ACORD. Trufla sits on CSIO rails as
+      an implementation service delivered during brokerage onboarding — it is
+      not published as an interface, there is no CSIO conformance statement,
+      and no ACORD, AL3, ACORD XML, NGDS or IVANS reference appears anywhere
+      on the public site. This is the sector-typical Canadian posture: the
+      standard is a back-office data-exchange obligation, not a product API.
+  insuranceVerbs:
+    quote:
+      exposed: false
+      surface: Product feature only — truMarket "Quote Bind Issue" (https://www.trufla.com/products/trumarket/quote-bind-issue/, HTTP 200) describes a single-entry rating workflow that auto-pulls MVRs and history reports into a quoter across multiple markets. Agent-facing UI inside a licensed CRM. No API documented.
+    bind:
+      exposed: false
+      surface: Same "Quote Bind Issue" page. Agent-facing. No API documented.
+    issue:
+      exposed: false
+      surface: Same "Quote Bind Issue" page, plus truMobile Marketplace (https://www.trufla.com/products/trumobile/marketplace/, HTTP 200) which sells auxiliary products — travel, roadside, pet — "100% Digital from Quote to Purchase" with instant policy confirmation. Consumer-facing UI. No API documented.
+    fnol:
+      exposed: false
+      surface: truMobile customer self-service advertises claim reporting from the app/portal. Consumer-facing UI. No API, no FNOL schema, no ACORD/CSIO claims message documented publicly.
+    audience: Agent/broker-facing and consumer-facing product UI. There is no partner-facing or public API tier.
+  authModel:
+    scheme: Not published
+    note: |
+      No authentication documentation of any kind is public. Anonymous fetches
+      of https://www.trufla.com/.well-known/openid-configuration and
+      https://www.trufla.com/.well-known/oauth-authorization-server both
+      returned HTTP 404, and /.well-known/security.txt returned HTTP 404. The
+      only sign-in surfaces are the customer support host and the licensed
+      truMarket/truMobile broker portals, which are sold via
+      https://www.trufla.com/request-a-demo/ (HTTP 200) rather than any
+      self-serve signup.
+  webhooks:
+    exists: false
+    note: No webhook or event catalog, and no AsyncAPI document. The truMobile release notes describe push notifications and "Policy Attach/Detach Event Notifications" as in-product features, not as a subscribable external event stream.
+  postman:
+    exists: false
+    note: No public Postman collection or workspace referenced anywhere on the site.
+  graphql:
+    exists: false
+    note: https://www.trufla.com/graphql returned HTTP 404. No GraphQL surface to introspect.
+  grpc:
+    exists: false
+    note: No published .proto files.
+  sourceCode:
+    githubOrganization: none confirmed
+    note: github.com/trufla (HTTP 200) is an unrelated stale personal account with a single public repo (a magento2 fork) and no company identity. Not claimed in apis.yml.
+  statusPage:
+    exists: unverified
+    note: status.trufla.com has a DNS CNAME to Atlassian Statuspage (0jmtjtdvnvs8.stspg-customer.com) but TLS fails — the certificate only covers *.statuspage.io, so the custom domain is misconfigured or dangling. Not claimed in apis.yml.
+  transports:
+  - protocol: REST
+    scheme: https
+    documented: false
+    note: No public REST API is documented. Trufla's own release notes reference internal API work (e.g. "faster API response times with Laravel Octane" for truMobile), confirming the platform is API-backed internally while exposing nothing publicly.
+  - protocol: GraphQL
+    documented: false
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+  - protocol: gRPC
+    documented: false
+  - protocol: CSIO data exchange
+    documented: false
+    note: Delivered as a professional-services implementation step during brokerage onboarding, using a CSIO account and mailbox supplied by the client. Not an interface Trufla publishes.
+  - protocol: BMS connectors
+    documented: false
+    note: Acturis, Power Broker, Vertafore, Applied Epic/TAM. Sold as subscribable apps in the truMarket app store; no public integration reference.
+sources:
+- url: https://www.trufla.com/
+  type: Website
+  httpStatus: 200
+  note: Company overview, Calgary HQ (Platform Calgary, 407 9 Ave SE, Calgary, AB T2G 2K7), 300+ brokerages.
+- url: https://www.trufla.com/about-us/
+  type: About
+  httpStatus: 200
+  note: Origin story and timeline — Sharp Insurance 2009, SharpMobile 2014, E-Method acquired 2016, Trufla founded 2018, Cairo development office 2019, Canada and UK broker clients 2020.
+- url: https://www.trufla.com/page-sitemap.xml
+  type: Sitemap
+  httpStatus: 200
+  note: Full 79-URL page inventory. No developer, API, or documentation page exists.
+- url: https://www.trufla.com/products/trumarket/
+  type: Documentation
+  httpStatus: 200
+  note: Source of the "CSIO Implementation" quote in the four-step onboarding process.
+- url: https://www.trufla.com/products/trumarket/app-store/
+  type: Integrations
+  httpStatus: 200
+  note: Names the BMS connectors (Acturis, PowerBroker, Vertafore), Salesforce, SEH Systems, telephony, e-signature, payment processor, Communications Centre (formerly CP360).
+- url: https://www.trufla.com/products/trumarket/quote-bind-issue/
+  type: Documentation
+  httpStatus: 200
+  note: Quote/bind/issue described as an agent-facing product workflow, not an API.
+- url: https://www.trufla.com/products/trumobile/marketplace/
+  type: Documentation
+  httpStatus: 200
+  note: Consumer purchase of auxiliary products (travel, roadside, pet) end to end in-app.
+- url: https://www.trufla.com/products/trumobile/clementine-rpa/
+  type: Documentation
+  httpStatus: 200
+  note: Names Applied Epic, TAM and Power Broker, and states these BMS "don't integrate easily with external platforms" — RPA is used precisely because APIs are absent.
+- url: https://www.trufla.com/legal/terms-of-service/
+  type: TermsOfService
+  httpStatus: 200
+  note: Service-specific terms for truMobile/truMarket, truWeb, truScore and PolicyPro; source of the CSIO account + insurer APIs client-responsibility clause.
+- url: https://www.trufla.com/resources/release-notes/
+  type: ChangeLog
+  httpStatus: 200
+  note: Product release notes; references internal Laravel Octane API performance work and BMS integration error logging.
+- url: https://www.trufla.com/resources/partners/
+  type: Partners
+  httpStatus: 200
+  note: JavaScript-rendered partner logo grid; no partner names or technical detail in the served HTML.
+actions:
+  openapiDirectoryCreated: false
+  apisEntriesCreated: 0
+  reason: |
+    No public API surface exists to describe. Recording the absence
+    accurately — no developer portal, no specs, CSIO rather than ACORD, and
+    integration only through BMS connectors and a professional-services
+    implementation — is the correct outcome for this provider and the point
+    of the insurance data set.

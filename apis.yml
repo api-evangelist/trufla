@@ -1,0 +1,79 @@
+aid: trufla
+url: https://raw.githubusercontent.com/api-evangelist/trufla/refs/heads/main/apis.yml
+name: Trufla
+kind: company
+description: >-
+  Trufla Technology is a Calgary, Alberta insurtech that builds digital
+  distribution software for independent property and casualty insurance
+  brokerages, serving 300+ brokerages primarily across Canada with some UK
+  clients. Founded in 2018 by Sherif Gemayel out of Sharp Insurance's in-house
+  tooling (SharpMobile plus the E-Method digital agency), Trufla sells a
+  broker-channel suite rather than underwriting risk itself: truWeb for broker
+  websites, SEO and digital marketing; truMarket, an insurance CRM with a
+  "Quote Bind Issue" rating workflow, lead management, an app store and a
+  marketplace; truMobile, a customer self-service app and broker portal with
+  policy access, document delivery, claim reporting and a marketplace for
+  auxiliary products such as travel, roadside and pet; DataHub with the Policy
+  KPI Dashboard and AI Retention X-Ray; Trudi, an AI insurance assistant; and
+  PolicyPro, a contracted back-office outsourcing service. Its API posture is
+  entirely partner-gated and inbound. Trufla publishes no public developer
+  portal and no self-serve API — developer.trufla.com, developers.trufla.com,
+  docs.trufla.com and api.trufla.com do not resolve (NXDOMAIN), and every
+  OpenAPI, Swagger, GraphQL and API-docs path probed on www.trufla.com returns
+  404. Integration happens the way it does across the Canadian broker channel:
+  through broker management system connectors (Acturis, Power Broker,
+  Vertafore, Applied Epic/TAM), Salesforce, SEH Systems, telephony,
+  e-signature and payment apps subscribed from the truMarket app store, and
+  through a CSIO implementation step during onboarding. Trufla makes no
+  reference to ACORD, AL3 or IVANS anywhere on its public site; CSIO — Canada's
+  insurance data-standards body — is the standards seam here, and Trufla's own
+  terms of service require the brokerage client to supply its own CSIO account
+  and mailbox plus its own insurer contracts and APIs.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- Canada
+- Property and Casualty
+- Insurtech
+- Broker
+- Agency Management
+- CSIO
+- Policy Administration
+- Quote Bind Issue
+- Digital Distribution
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis: []
+common:
+- type: Website
+  url: https://www.trufla.com/
+- type: About
+  url: https://www.trufla.com/about-us/
+- type: Products
+  url: https://www.trufla.com/products/trumarket/
+- type: Integrations
+  url: https://www.trufla.com/products/trumarket/app-store/
+- type: Partners
+  url: https://www.trufla.com/resources/partners/
+- type: Marketplace
+  url: https://www.trufla.com/products/trumobile/marketplace/
+- type: ChangeLog
+  url: https://www.trufla.com/resources/release-notes/
+- type: Blog
+  url: https://www.trufla.com/blogs/
+- type: BlogRSS
+  url: https://www.trufla.com/feed/
+- type: Support
+  url: https://www.trufla.com/contact-us/
+- type: Signup
+  url: https://www.trufla.com/request-a-demo/
+- type: Careers
+  url: https://www.trufla.com/careers/
+- type: TermsOfService
+  url: https://www.trufla.com/legal/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.trufla.com/legal/privacy-policy/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
