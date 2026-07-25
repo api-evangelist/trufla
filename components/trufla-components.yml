@@ -1,0 +1,50 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.npmjs.com/package/@trufla/ngx-tru-forms
+note: |
+  Trufla ships no hosted embeddable widgets, no web-component loader and no
+  embedded-dashboard product for third parties. The only publicly consumable
+  client-side component surface is a JSON-Schema-driven dynamic form library
+  published to npm under the first-party @trufla scope. Everything else that
+  looks like a component — the truMobile customer self-service portal, the
+  truMarket quote/bind/issue screens, the truMobile Marketplace storefront and
+  the DataHub Policy KPI dashboard — is delivered inside a licensed product,
+  not as a component a developer can embed.
+families:
+- family: dynamic-forms
+  description: >-
+    JSON Schema to rendered form. Trufla's broker workflows (quote intake,
+    change requests, traveler forms) are form-heavy, and these libraries are
+    the open-sourced rendering layer behind them.
+  components:
+  - name: ngx-tru-forms
+    framework: angular
+    package: '@trufla/ngx-tru-forms'
+    loader: npm
+    url: https://www.npmjs.com/package/@trufla/ngx-tru-forms
+    official: true
+    status: unmaintained
+    last_release: '2022-07-05'
+  - name: react-tru-form
+    framework: react
+    package: react-tru-form
+    loader: npm
+    url: https://www.npmjs.com/package/react-tru-form
+    official: false
+    status: abandoned
+    last_release: '2019-03-13'
+embedded_surfaces_not_available:
+- surface: truMobile customer self-service portal
+  embeddable: false
+  note: Licensed product UI, delivered as a branded app/portal to the brokerage.
+- surface: truMarket Quote Bind Issue
+  embeddable: false
+  note: Agent-facing CRM screen inside the licensed truMarket product.
+- surface: truMobile Marketplace
+  embeddable: false
+  note: Consumer storefront for travel/roadside/pet products; not embeddable by
+    third parties.
+- surface: DataHub Policy KPI Dashboard / AI Retention X-Ray
+  embeddable: false
+  note: Hosted analytics dashboards sold as a product module, no embed contract
+    published.

@@ -1,0 +1,68 @@
+generated: '2026-07-25'
+method: searched
+source: https://registry.npmjs.org/-/v1/search?text=%40trufla
+note: |
+  Trufla publishes no API client SDKs — there is no public Trufla API to write a
+  client against. What it does publish is one first-party open-source front-end
+  library on npm under the @trufla scope, plus a second, older form library
+  published from an employee's personal GitLab namespace. Neither is an API
+  client. Registries probed on 2026-07-25: npm (2 hits, below), PyPI
+  (https://pypi.org/pypi/trufla/json -> HTTP 404), Maven Central, NuGet,
+  pkg.go.dev, RubyGems, Packagist and crates.io (no first-party Trufla
+  packages). The GitHub organization github.com/trufla-technology exists
+  (7 public repositories) but every current public repo is a fork of a
+  third-party project — Apache Superset, laravel-one-time-operations,
+  tymondesigns/jwt-auth, laravel-fcm, microsoft-teams-apps-icebreaker,
+  openid/AppAuth-Android and a demo shop app. The ngx-tru-forms source repo
+  referenced by the npm package (trufla-technology/ngx-tru-forms) now returns
+  HTTP 404 — the package remains on npm but the repository is gone or private.
+packages:
+- language: javascript
+  registry: npm
+  name: '@trufla/ngx-tru-forms'
+  url: https://www.npmjs.com/package/@trufla/ngx-tru-forms
+  install: npm install @trufla/ngx-tru-forms
+  version: 1.1.13-rc.2
+  published: '2022-07-05'
+  license: MIT
+  official: true
+  api_client: false
+  kind: ui-component-library
+  description: >-
+    Angular 8+ module that generates forms from JSON Schema. Used inside
+    Trufla's broker-facing products for dynamic form rendering; not a client
+    for any Trufla API.
+  repository: https://github.com/trufla-technology/ngx-tru-forms
+  repository_status: 404 — repo no longer public
+  maintainers_domain: trufla.com
+  evidence: >-
+    npm maintainers are @trufla.com addresses (karim.s@, wassim.s@,
+    Abdelhameed.M@, support@, jeremy.v@, ahmed.a@, elijah.l@), which is what
+    establishes first-party authorship.
+- language: javascript
+  registry: npm
+  name: react-tru-form
+  url: https://www.npmjs.com/package/react-tru-form
+  install: npm install react-tru-form
+  version: 0.0.1-beta.6
+  published: '2019-03-13'
+  official: false
+  api_client: false
+  kind: ui-component-library
+  description: React component for building web forms from JSON Schema — the
+    React sibling of ngx-tru-forms.
+  repository: https://gitlab.com/desoleary-trufla/react-tru-form
+  note: >-
+    Published from an individual's personal GitLab namespace
+    (desoleary-trufla), not from a Trufla-owned org or the @trufla npm scope,
+    so it is recorded as unofficial.
+registries_probed:
+- {registry: npm, hits: 2}
+- {registry: pypi, hits: 0, probe: 'https://pypi.org/pypi/trufla/json -> 404'}
+- {registry: maven-central, hits: 0}
+- {registry: nuget, hits: 0}
+- {registry: pkg.go.dev, hits: 0}
+- {registry: rubygems, hits: 0}
+- {registry: packagist, hits: 0}
+- {registry: crates.io, hits: 0}
+sdk_count_official: 0

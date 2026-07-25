@@ -1,0 +1,63 @@
+generated: '2026-07-25'
+method: probed
+source: live HTTP probes, 2026-07-25
+host: https://www.trufla.com
+note: |
+  Trufla has no API host to probe — developer.trufla.com, developers.trufla.com,
+  docs.trufla.com and api.trufla.com are NXDOMAIN, and apis.yml carries no
+  apis[] entry and therefore no baseURL or OpenAPI servers[] host. The only
+  reachable first-party web host is www.trufla.com, which is a WordPress
+  marketing site behind Cloudflare. Every /.well-known/ discovery document
+  returns 404. This is recorded absence, not a gap in the probe: no
+  WellKnown/APICatalog/SecurityTxt pointer is wired in apis.yml because no
+  document exists.
+found: 0
+documents:
+- path: /.well-known/security.txt
+  spec: RFC 9116
+  status: 404
+- path: /.well-known/openid-configuration
+  spec: OpenID Connect Discovery 1.0
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  spec: RFC 8414
+  status: 404
+- path: /.well-known/api-catalog
+  spec: RFC 9727
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /security.txt
+  status: 404
+adjacent_discovery_documents:
+- path: /llms.txt
+  status: 200
+  file: ../llms/trufla-llms.txt
+  note: >-
+    Not a /.well-known/ document, but the one machine-addressable discovery
+    file Trufla actually publishes. Harvested verbatim; see
+    llms/trufla-llms.txt and the LLMsTxt pointer in apis.yml.
+- path: /robots.txt
+  status: 200
+  note: >-
+    Disallows /wp-admin/ for all agents and blocks "ShapBot" outright; declares
+    Crawl-delay 10 and points at https://www.trufla.com/sitemap_index.xml.
+- path: /sitemap_index.xml
+  status: 200
+  note: Three child sitemaps; page-sitemap.xml lists 79 URLs, none of them a
+    developer, API or documentation page.
+- path: /wp-json
+  status: 200
+  note: >-
+    WordPress core REST API of the marketing CMS. Machine-readable, but
+    incidental infrastructure rather than a Trufla product API, so it is
+    deliberately not listed as an API in apis.yml.
+hosts_probed:
+- {host: developer.trufla.com, dns: NXDOMAIN}
+- {host: developers.trufla.com, dns: NXDOMAIN}
+- {host: docs.trufla.com, dns: NXDOMAIN}
+- {host: api.trufla.com, dns: NXDOMAIN}
+- {host: trust.trufla.com, dns: CNAME trufla.portals.safebase.io, status: 403 to
+    non-browser clients}
+- {host: status.trufla.com, dns: CNAME 0jmtjtdvnvs8.stspg-customer.com, tls:
+    invalid — certificate does not cover the custom domain}

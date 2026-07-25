@@ -1,0 +1,126 @@
+generated: '2026-07-25'
+method: derived
+source: |
+  Derived from the public surface only — there is no OpenAPI, AsyncAPI, GraphQL
+  SDL or .proto to read. Evidence comes from www.trufla.com product/legal pages,
+  the published release notes, the harvested llms.txt, live /.well-known probes,
+  the SafeBase trust center, and the trufla-technology GitHub organization.
+  Nothing here is a Trufla conformance claim; Trufla publishes no conformance
+  statement for any standard.
+note: |
+  The insurance-standards seam for Trufla is CSIO, not ACORD. CSIO appears once
+  on the public site as an implementation step during truMarket onboarding, and
+  once in the terms of service as a client responsibility ("CISIO account and
+  mailbox" — Trufla's spelling). No ACORD, AL3, ACORD XML, NGDS or IVANS
+  reference appears anywhere on the site. No Compliance pointer is wired in
+  apis.yml: the SafeBase trust center states Trufla is "working towards
+  compliance certifications" and names no completed certification.
+standards:
+- id: csio
+  name: CSIO (Centre for Study of Insurance Operations) data standards
+  conforms: unknown
+  published_statement: false
+  evidence: >-
+    https://www.trufla.com/products/trumarket/ lists "CSIO Implementation:
+    Ensuring standards compliance and efficient data exchange" as an onboarding
+    step; https://www.trufla.com/legal/terms-of-service/ requires the brokerage
+    to supply "CISIO account and mailbox, Apple Accounts (for mobile apps),
+    insurer contracts and APIs". Delivered as professional services, never
+    published as an interface, and no conformance level or message set is named.
+- id: acord
+  name: ACORD standards (AL3, ACORD XML)
+  conforms: false
+  evidence: No ACORD, AL3, ACORD XML, NGDS or IVANS reference on any of the 79
+    pages in https://www.trufla.com/page-sitemap.xml.
+- id: openapi
+  name: OpenAPI Specification
+  conforms: false
+  evidence: >-
+    All discovery paths 404 (/openapi.json, /openapi.yaml, /swagger.json,
+    /v1/openapi.json, /api-docs, /spec, /redoc, /api/v1); developer/docs/api
+    subdomains are NXDOMAIN.
+- id: asyncapi
+  name: AsyncAPI
+  conforms: false
+  evidence: >-
+    No event catalog or webhook surface. "Policy Attach/Detach Event
+    Notifications" in truMobile 25.1.91 are in-product push notifications, not a
+    subscribable external event stream.
+- id: graphql
+  name: GraphQL
+  conforms: false
+  evidence: https://www.trufla.com/graphql -> HTTP 404; no /graphql surface to
+    introspect on any resolving host.
+- id: grpc
+  name: gRPC / Protocol Buffers
+  conforms: false
+  evidence: No .proto published in the trufla-technology GitHub organization or
+    anywhere on the site.
+- id: rfc9457-problem-details
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: unknown
+  evidence: No public API and no error reference, so the error envelope cannot
+    be observed.
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: /.well-known/security.txt and /security.txt both return HTTP 404 on
+    www.trufla.com.
+- id: rfc9727-api-catalog
+  name: RFC 9727 /.well-known/api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returns HTTP 404.
+- id: oauth2
+  name: OAuth 2.0
+  conforms: unknown
+  evidence: >-
+    No public authorization server — /.well-known/oauth-authorization-server
+    returns 404. Internal use is visible but not documented: the
+    trufla-technology GitHub org forks openid/AppAuth-Android (the OAuth 2.0 /
+    OIDC client SDK) and tymondesigns/jwt-auth (JWT auth for Laravel), and the
+    truWeb 25.3.50 release notes describe centralized authentication with
+    Keycloak-to-WordPress role alignment. That is platform plumbing, not a
+    published API authorization contract.
+- id: oidc
+  name: OpenID Connect
+  conforms: unknown
+  evidence: >-
+    /.well-known/openid-configuration returns 404 on www.trufla.com. Keycloak
+    (an OIDC provider) is named in the truWeb 25.3.50 release notes as the
+    centralized authentication system, so OIDC is used internally without a
+    public discovery document.
+- id: llmstxt
+  name: llms.txt
+  conforms: partial
+  evidence: >-
+    https://www.trufla.com/llms.txt returns HTTP 200. The back half follows the
+    llms.txt convention (H1, blockquote summary, "## Section" link lists with
+    descriptions); the front half is a non-standard INI-style preamble of
+    [site]/[access]/[usage]/[compliance]/[data]/[attribution]/[crawl] blocks
+    that no llms.txt profile defines. Harvested verbatim to
+    llms/trufla-llms.txt.
+- id: tls-1-3
+  name: TLS 1.3
+  conforms: true
+  evidence: security/trufla-domain-security.yml — www.trufla.com negotiates
+    TLSv1.3 with HSTS max-age 31536000.
+- id: dnssec
+  name: DNSSEC
+  conforms: true
+  evidence: security/trufla-domain-security.yml — trufla.com is DNSSEC-signed.
+- id: spf-dmarc
+  name: SPF / DMARC email authentication
+  conforms: partial
+  evidence: >-
+    security/trufla-domain-security.yml — SPF and DMARC records both present,
+    but the DMARC policy is p=none (monitor only), so nothing is enforced. No
+    CAA record is published.
+certifications_published: []
+compliance_program:
+  trust_center: https://trust.trufla.com/
+  platform: SafeBase
+  certifications: []
+  statement: '"We are working towards compliance certifications" — no completed
+    SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP or CSA STAR certification is
+    named.'
+  subprocessors: [Amazon Web Services]

@@ -1,0 +1,55 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.trufla.com/resources/release-notes/
+note: |
+  Trufla runs a product lifecycle, not an API lifecycle. Versions are announced
+  per product in the release notes; there is no API version, no deprecation
+  policy, no Sunset/Deprecation header contract (RFC 8594), no published SLA and
+  no working status page. status.trufla.com is provisioned but broken: DNS
+  CNAMEs to Atlassian Statuspage (0jmtjtdvnvs8.stspg-customer.com) while the
+  presented certificate does not cover the custom domain, so a verified HTTPS
+  request fails outright (curl exit on TLS, http=000; only -k returns content,
+  and the content served is an Atlassian page rather than a Trufla status page).
+  Because the page does not actually work for a customer, no StatusPage pointer
+  is wired in apis.yml — that would claim operational transparency the provider
+  does not deliver. Likewise no Deprecation pointer: no deprecation policy of
+  any kind is published.
+versioning:
+  scheme: per-product build numbers (YY.Q.BUILD, e.g. truMobile 25.3.97), with
+    newer modules restarting at semver (Central Admin 1.0.0)
+  api_versioning: none — no public API
+  docs: https://www.trufla.com/resources/release-notes/
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: unknown
+  deprecation_header: unknown
+  note: No deprecation, end-of-life or migration policy is published anywhere on
+    www.trufla.com; the 79-URL page sitemap contains no such page.
+sla:
+  url: null
+  uptime_target: null
+  published: false
+  note: >-
+    No SLA or uptime commitment is public. Trufla's terms of service are sold
+    per product (truMobile/truMarket, truWeb, truScore, PolicyPro) and place
+    CSIO account, insurer contracts and insurer APIs on the brokerage client.
+status_page:
+  url: https://status.trufla.com/
+  working: false
+  dns: CNAME 0jmtjtdvnvs8.stspg-customer.com (Atlassian Statuspage)
+  tls: invalid — certificate does not cover status.trufla.com
+  http_verified: 000
+  http_insecure: 200
+  note: Dangling or misconfigured Statuspage custom domain. Not claimed as a
+    StatusPage in apis.yml.
+support:
+  channel: https://www.trufla.com/contact-us/
+  knowledge_base: https://help.trufla.com
+  knowledge_base_status: 403 — Cloudflare interstitial to non-browser clients;
+    customer support host, gated, not a developer resource
+release_cadence:
+  observed: roughly monthly to quarterly per product across 2023-2025
+  most_recent: '2025-12-16'
+  source: changelog/trufla-changelog.yml
+deprecated_operations: []

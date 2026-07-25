@@ -28,7 +28,14 @@ description: >-
   reference to ACORD, AL3 or IVANS anywhere on its public site; CSIO — Canada's
   insurance data-standards body — is the standards seam here, and Trufla's own
   terms of service require the brokerage client to supply its own CSIO account
-  and mailbox plus its own insurer contracts and APIs.
+  and mailbox plus its own insurer contracts and APIs. What Trufla does publish
+  machine-readably sits outside the developer surface entirely: an llms.txt at
+  www.trufla.com/llms.txt that licenses AI summarization while forbidding
+  training and pricing extraction, a SafeBase trust center at trust.trufla.com
+  that names AWS as its sole subprocessor and no completed certification, dated
+  per-product release notes, a GitHub organization at trufla-technology holding
+  only forks, and one first-party npm package, the Angular JSON-Schema form
+  library @trufla/ngx-tru-forms.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Insurance
@@ -46,6 +53,26 @@ modified: '2026-07-25'
 specificationVersion: '0.19'
 apis: []
 common:
+- type: TrustCenter
+  url: security/trufla-trust-center.yml
+- type: DomainSecurity
+  url: security/trufla-domain-security.yml
+- type: LLMsTxt
+  url: llms/trufla-llms.txt
+- type: Packages
+  url: packages/trufla-packages.yml
+- type: Components
+  url: components/trufla-components.yml
+- type: ChangeLog
+  url: changelog/trufla-changelog.yml
+- type: Lifecycle
+  url: lifecycle/trufla-lifecycle.yml
+- type: Conformance
+  url: conformance/trufla-conformance.yml
+- type: GitHubOrganization
+  url: https://github.com/trufla-technology
+- type: SourceCode
+  url: https://github.com/trufla-technology
 - type: Website
   url: https://www.trufla.com/
 - type: About
@@ -66,7 +93,7 @@ common:
   url: https://www.trufla.com/feed/
 - type: Support
   url: https://www.trufla.com/contact-us/
-- type: Signup
+- type: SignUp
   url: https://www.trufla.com/request-a-demo/
 - type: Careers
   url: https://www.trufla.com/careers/
@@ -74,6 +101,14 @@ common:
   url: https://www.trufla.com/legal/terms-of-service/
 - type: PrivacyPolicy
   url: https://www.trufla.com/legal/privacy-policy/
+- type: AcceptableUsePolicy
+  url: https://www.trufla.com/legal/acceptable-use-policy/
+- type: Resources
+  url: https://www.trufla.com/resources/
+- type: CaseStudies
+  url: https://www.trufla.com/resources/case-studies/
+- type: Webinars
+  url: https://www.trufla.com/resources/webinars/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

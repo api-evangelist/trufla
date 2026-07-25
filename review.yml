@@ -168,11 +168,84 @@ findings:
     exists: false
     note: No published .proto files.
   sourceCode:
-    githubOrganization: none confirmed
-    note: github.com/trufla (HTTP 200) is an unrelated stale personal account with a single public repo (a magento2 fork) and no company identity. Not claimed in apis.yml.
+    githubOrganization: https://github.com/trufla-technology
+    confirmed: true
+    confirmedDate: '2026-07-25'
+    note: |
+      Found on the 2026-07-25 enrichment round via the npm registry, not via the
+      website — www.trufla.com links to no source repository anywhere. The npm
+      package @trufla/ngx-tru-forms declares
+      repository git+https://github.com/trufla-technology/ngx-tru-forms, which
+      led to the org. github.com/trufla-technology (id 38432972, created
+      2018-04-16) carries the real company identity: name "Trufla", blog
+      https://www.trufla.com/, email support@trufla.com, location Canada, and
+      the company's own description. It is now claimed in apis.yml as
+      GitHubOrganization + SourceCode.
+      All 7 public repos are forks of third-party projects — apache/superset,
+      laravel-one-time-operations, tymondesigns/jwt-auth, laravel-fcm
+      (as trumobile-laravel-fcm), microsoft-teams-apps-icebreaker,
+      openid/AppAuth-Android, and a reactjs/nodejs demo shop. No Trufla product
+      code, no specs, no .proto. The ngx-tru-forms repo the npm package points
+      at now returns HTTP 404 (deleted or made private) even though the package
+      is still on npm.
+      The earlier "none confirmed" note referred to github.com/trufla, an
+      unrelated stale personal account with a magento2 fork — that account is
+      still not Trufla and remains unclaimed.
+  packages:
+    exists: true
+    registry: npm
+    note: |
+      Two first-party-adjacent npm packages, neither an API client:
+      @trufla/ngx-tru-forms (official — all maintainer emails are @trufla.com;
+      Angular JSON-Schema form generator, MIT, last published 2022-07-05) and
+      react-tru-form (published from a personal GitLab namespace,
+      desoleary-trufla, so recorded unofficial; last published 2019-03-13).
+      PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist and crates.io
+      have no first-party Trufla packages. Because neither package is an API
+      client SDK, no SDKs pointer is wired — only Packages and Components.
+  llmsTxt:
+    exists: true
+    url: https://www.trufla.com/llms.txt
+    httpStatus: 200
+    bytes: 92080
+    note: |
+      Missed by the first round, which probed /.well-known/* but not /llms.txt.
+      Trufla does publish one, and it is unusual: the file opens with a
+      non-standard INI-style preamble ([site], [access], [usage], [compliance],
+      [data], [attribution], [crawl], [notes]) that asserts allowed_uses of
+      summarization/explanation/lookup/citation, disallowed_uses of training,
+      fine-tuning, lead generation, pricing extraction and data resale, a
+      required attribution string, a 30 requests/minute crawl ceiling, and a
+      regulated-industry disclaimer requirement. The back half is conventional
+      llms.txt: 13 "##" sections (Home, Blog, Blogs, On demand webinars, Release
+      notes, About us, Products, Legal, Datahub, Services, Careers, Contact us,
+      Request a demo) of titled, described links. Harvested verbatim to
+      llms/trufla-llms.txt.
+  trustCenter:
+    exists: true
+    url: https://trust.trufla.com/
+    platform: SafeBase
+    dns: CNAME trufla.portals.safebase.io
+    certifications: []
+    note: |
+      Also missed by the first round. Real, live SafeBase trust portal (403 to
+      curl, renders for a browser). It names AWS as its one subprocessor and
+      offers security reports, questionnaires, incident-response and continuous-
+      monitoring documents on request — but names NO completed certification,
+      stating instead "We are working towards compliance certifications". So a
+      TrustCenter pointer is warranted and a Compliance pointer is not.
   statusPage:
-    exists: unverified
-    note: status.trufla.com has a DNS CNAME to Atlassian Statuspage (0jmtjtdvnvs8.stspg-customer.com) but TLS fails — the certificate only covers *.statuspage.io, so the custom domain is misconfigured or dangling. Not claimed in apis.yml.
+    exists: false
+    working: false
+    note: |
+      Re-probed 2026-07-25 and confirmed broken. status.trufla.com CNAMEs to
+      Atlassian Statuspage (0jmtjtdvnvs8.stspg-customer.com), but a verified
+      HTTPS request fails at TLS (curl http_code 000) because the presented
+      certificate does not cover the custom domain; only an insecure (-k)
+      request returns 200, and what it returns is an Atlassian page rather than
+      a Trufla status page. Dangling/misconfigured custom domain. Recorded in
+      lifecycle/trufla-lifecycle.yml; deliberately NOT claimed as a StatusPage
+      pointer in apis.yml.
   transports:
   - protocol: REST
     scheme: https

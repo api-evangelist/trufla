@@ -1,0 +1,172 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.trufla.com/resources/release-notes/
+docs: https://www.trufla.com/resources/release-notes/
+also_see: https://www.trufla.com/resources/whats-new/
+note: |
+  Trufla publishes dated, per-product release notes for its licensed products,
+  not for an API. Entries are written for brokerage staff — features, fixes and
+  UX changes — and carry no breaking-change register, no deprecation notices
+  and no API version numbers. They are still the best public record of what
+  ships and when, and they leak real platform detail: Laravel Octane on the
+  truMobile backend, Keycloak-to-WordPress role alignment in truWeb, BMS
+  integration error logging, and "Policy Attach/Detach Event Notifications".
+scheme: per-product; truMobile/truMarket/truWeb use a YY.Q.BUILD form (for
+  example 25.3.97 = 2025, third cycle, build 97), while newer modules restart
+  at semver (Central Admin 1.0.0). Older truMobile entries used a plain major
+  series (8.0, 9.0, 10.0, 11.0).
+breaking_change_policy: none published
+deprecation_notices: none published
+api_versioning: not applicable — no public API is versioned or published
+current:
+- product: truMarket Central Admin
+  version: 1.0.0
+  date: '2025-12-16'
+- product: truMobile
+  version: 25.3.97
+  date: '2025-08-19'
+- product: truWeb
+  version: 25.3.50
+  date: '2025-07-27'
+entries:
+- product: truMarket Central Admin
+  version: 1.0.0
+  date: '2025-12-16'
+  url: https://www.trufla.com/release-notes/central-admin-version-1-0-0
+  breaking: false
+  highlights:
+  - Unified admin dashboard across Trufla products
+  - User and team management
+  - Location setup and mapping
+  - Real-time operational metrics
+- product: truMobile
+  version: 25.3.97
+  date: '2025-08-19'
+  url: https://www.trufla.com/release-notes/trumobile-release-notes-25-3-97
+  breaking: false
+  highlights:
+  - Marketplace order history and product detail improvements
+  - Unified policy listing
+  - Sync stability improvements
+  - Tighter control over claims and change-request features
+- product: truMobile
+  version: 25.3.96
+  date: '2025-07-29'
+  url: https://www.trufla.com/release-notes/trumobile-release-notes-25-3-96
+  breaking: false
+  highlights:
+  - Renewable-field identification in Retention X-Ray
+  - Email sequencing across Policy Notifier and X-Ray
+  - Larger eDoc upload support
+  - Post-login deep links return users to the intended page
+- product: truWeb
+  version: 25.3.50
+  date: '2025-07-27'
+  url: https://www.trufla.com/release-notes/truweb-release-notes-25-3-50
+  breaking: false
+  highlights:
+  - Pilot launch of the Tru Users Plugin
+  - Automated role creation
+  - Centralized authentication
+  - Keycloak and WordPress role alignment, stronger permission enforcement
+- product: truMobile
+  version: 25.3.95
+  date: '2025-05-22'
+  url: https://www.trufla.com/release-notes/trumobile-release-notes-25-3-95
+  breaking: false
+  highlights:
+  - Policy history timeline
+  - Policy Snapshot detail with document and insured-item access
+  - Enhanced tracking and reporting
+- product: truWeb
+  version: 25.2.46
+  date: '2025-05-22'
+  url: https://www.trufla.com/release-notes/trumobile-version-25-2-46-release-notes
+  breaking: false
+  highlights:
+  - Dynamic card layouts
+  - Personalized traveler forms
+  - Improved attachment handling
+  - Accessibility and responsiveness work
+- product: truMobile
+  version: 25.2.93
+  date: '2025-05-14'
+  url: https://www.trufla.com/release-notes/trumobile-version-25-2-93-release-notes
+  breaking: false
+  highlights:
+  - Microsoft Clarity analytics SDK integration
+  - Database upgrades and performance improvements
+- product: Retention X-Ray (DataHub)
+  version: April 2025 update
+  date: '2025-04-25'
+  url: https://www.trufla.com/release-notes/retention-x-ray-update-april
+  breaking: false
+  highlights:
+  - More reliable identification of claims and convictions
+  - Removed a processing step that caused prediction/dashboard drift
+  - Historical data cleanup (duplicates, date errors) improving risk scores
+- product: truMobile
+  version: 25.2.92
+  date: '2025-04-14'
+  url: https://www.trufla.com/release-notes/trumobile-release-25-2-92
+  breaking: false
+  highlights:
+  - '"Disable Sync" option in BMS Mapping'
+  - Legacy Hotjar removed in favour of Microsoft Clarity
+  - More descriptive dashboard error messages with links to support
+- product: truMarket
+  version: 25.1.54
+  date: '2025-04-06'
+  url: https://www.trufla.com/release-notes/trumarket-release-25-1-54
+  breaking: false
+  highlights:
+  - Dynamic button labelling and layout customization on the quote screen
+  - Attachment search
+  - 30MB file upload limit
+- product: truMobile
+  version: 25.1.91
+  date: '2025-03-23'
+  url: https://www.trufla.com/release-notes/trumobile-release-25-1-91
+  breaking: false
+  highlights:
+  - Policy Attach/Detach event notifications (in-product, not a subscribable
+    webhook)
+  - Laravel Octane for faster API response times
+  - Duplicate policy-owner management
+  - Enhanced BMS integration error logging
+- product: truMobile
+  version: '11.0'
+  date: '2024-08'
+  url: https://www.trufla.com/release-notes/trumobile-11-0-update
+  breaking: false
+  highlights:
+  - Redesigned homepage, earlier policy-document access
+  - Start-page alerts and retry on error
+  - '"Mark as done" for brokers, upgraded online marketplace'
+  - Login report fixes, clearer OTP security messaging
+- product: truMobile
+  version: '10.0'
+  date: '2024-06'
+  url: https://www.trufla.com/release-notes/trumobile-10-0-update
+  breaking: false
+  highlights:
+  - Homepage redesign and navigation work
+  - Smarter error handling and payment options
+- product: truMobile
+  version: '9.0'
+  date: '2023-12'
+  url: https://www.trufla.com/release-notes/trumobile-9-0-update
+  breaking: false
+  highlights:
+  - DataHub launch with premium dashboards and AI risk insights
+  - Jailbroken-iPhone detection
+  - MFA reset and PowerBroker writeback fixes
+- product: truMobile
+  version: '8.0'
+  date: '2023-11'
+  url: https://www.trufla.com/release-notes/trumobile-8-0-update
+  breaking: false
+  highlights:
+  - Revamped change-request and claims process
+  - Advanced X-Ray query builder
+  - Streamlined profile management and registration

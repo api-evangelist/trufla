@@ -1,0 +1,55 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.trufla.com/release-notes/truweb-release-notes-25-3-50
+note: |
+  There is no public API and therefore no documented API authentication. This
+  artifact records what the provider's own public material reveals about the
+  platform's identity stack, so the absence is auditable rather than blank.
+  Deliberately NOT wired as a `type: Authentication` pointer in apis.yml — the
+  ergonomics check that pointer feeds asks whether API authentication is
+  documented for a consumer, and it is not.
+api_authentication:
+  documented: false
+  schemes: []
+  probes:
+  - {url: 'https://www.trufla.com/.well-known/openid-configuration', status: 404}
+  - {url: 'https://www.trufla.com/.well-known/oauth-authorization-server', status: 404}
+  - {url: 'https://www.trufla.com/.well-known/security.txt', status: 404}
+  note: No API key, bearer token, OAuth or mTLS documentation exists on any
+    resolving Trufla host.
+platform_identity_stack:
+  observed: true
+  evidence:
+  - source: https://www.trufla.com/release-notes/truweb-release-notes-25-3-50
+    date: '2025-07-27'
+    detail: >-
+      truWeb 25.3.50 describes "centralized authentication", automated role
+      creation, enhanced permission enforcement, and "improved alignment between
+      Keycloak and WordPress roles" — Keycloak is the OIDC/OAuth 2.0 identity
+      provider behind the broker-facing products.
+  - source: https://www.trufla.com/release-notes/trumobile-11-0-update
+    detail: Clearer OTP security messaging and login report fixes — one-time
+      passcodes are part of the customer sign-in flow.
+  - source: https://www.trufla.com/release-notes/trumobile-9-0-update
+    detail: MFA reset fixes and jailbroken-iPhone detection in the truMobile
+      app.
+  - source: https://github.com/trufla-technology/AppAuth-Android
+    detail: The GitHub org forks openid/AppAuth-Android, the OAuth 2.0 / OpenID
+      Connect client SDK for Android — consistent with an OIDC-backed mobile app.
+  - source: https://github.com/trufla-technology/jwt-auth
+    detail: The org also forks tymondesigns/jwt-auth, JWT authentication for
+      Laravel/Lumen — consistent with JWT-bearer service auth behind the
+      Laravel backend named in the truMobile release notes.
+  interpretation: >-
+    Keycloak-issued OIDC sessions for humans, JWT bearer tokens between Laravel
+    services, MFA/OTP on customer accounts. All of it is internal product
+    plumbing inferred from release notes and public forks — none of it is a
+    published, callable authentication contract, and no scope, token endpoint or
+    client-registration surface is exposed.
+access_model:
+  self_serve: false
+  signup: https://www.trufla.com/request-a-demo/
+  gating: >-
+    Contract-gated. Access to truMarket/truMobile is sold to a brokerage; the
+    terms of service require the client to bring its own CSIO account and its
+    own insurer contracts and APIs.

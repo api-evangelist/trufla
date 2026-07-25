@@ -1,0 +1,44 @@
+generated: '2026-07-25'
+method: searched
+probe: true
+source: https://trust.trufla.com/
+url: https://trust.trufla.com/
+platform: SafeBase
+dns: CNAME trufla.portals.safebase.io
+http_note: Returns 403 to non-browser clients (Cloudflare); renders for a normal
+  browser user agent.
+certifications: []
+certification_status: >-
+  None published. The trust center states "We are working towards compliance
+  certifications" and "We are working on our security compliance" — no SOC 2,
+  ISO 27001, PCI DSS, HIPAA, FedRAMP, CSA STAR or FIPS certification is named as
+  completed. No Compliance pointer is wired in apis.yml as a result.
+subprocessors:
+- name: Amazon Web Services
+  role: infrastructure provider
+documents_available_on_request:
+- security reports
+- completed security questionnaires / self-assessments
+- risk mitigation and recovery objectives
+- data security practices
+- access control practices
+- infrastructure provider detail
+- endpoint security
+- incident response procedures
+- risk management
+- continuous monitoring
+access: Gated — documents are released through a "Get access" / "Ask for
+  information" request flow rather than published openly.
+evidence:
+- source: https://trust.trufla.com/
+  keywords:
+  - trust center
+  - compliance certification
+  - subprocessors
+  - incident response
+related:
+  vulnerability_disclosure: none published — /.well-known/security.txt returns
+    404 and no bug bounty or responsible-disclosure page exists
+  domain_security: security/trufla-domain-security.yml
+  privacy_policy: https://www.trufla.com/legal/privacy-policy/
+  acceptable_use_policy: https://www.trufla.com/legal/acceptable-use-policy/
